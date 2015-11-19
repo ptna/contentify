@@ -1,0 +1,8 @@
+- id: 1
+  type: public
+  name: '公開'
+  bg_color: ' green white-text'
+- id: 2
+  type: closed
+  name: '非公開'
+  bg_color: ''
