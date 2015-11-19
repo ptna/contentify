@@ -15,7 +15,6 @@ class CreateContentifySchemas < ActiveRecord::Migration
     add_index :contentify_categories, :parent_id
 
     create_table :contentify_contents do |t|
-      t.integer  :category_id,           null: false
       t.integer  :public_status_id,      null: false, default: 2
       t.integer  :priority,              null: true
       t.string   :title,                 null: false, limit: 255
@@ -31,8 +30,17 @@ class CreateContentifySchemas < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_foreign_key :contents, :categories
     add_index :contentify_contents, :title
+
+
+    create_table :contentify_categories_contents do |t|
+      t.integer  :contentify_category_id, null: false
+      t.integer  :contentify_content_id,  null: false
+    end
+
+    add_foreign_key :contentify_categories_contents, :contentify_categories
+    add_foreign_key :contentify_categories_contents, :contentify_contents
+
 
     create_table :contentify_users do |t|
       t.string  :name,            null: true,  limit: 60
@@ -41,14 +49,14 @@ class CreateContentifySchemas < ActiveRecord::Migration
       t.string  :crypted_password
       t.string  :salt
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     create_table :contentify_materials do |t|
       t.string  :title,           null: false,  limit: 100
       t.string  :source,          null: false,  limit: 500
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     add_index :contentify_materials, :title
