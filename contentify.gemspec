@@ -34,4 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency "kaminari"
   s.add_dependency "carrierwave"
   s.add_dependency "cocoon"
+  s.add_dependency "active_hash"
+  s.add_dependency "squeel"
+  s.add_dependency "closure_tree"
 end
