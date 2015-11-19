@@ -5,7 +5,7 @@ require "contentify/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "contentable"
+  s.name        = "contentify"
   s.version     = Contentify::VERSION
   s.authors     = ["igrs_ptna"]
   s.email       = ["igarashi@piano.or.jp"]
@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jbuilder", "~> 2.0"
   s.add_dependency "mysql2"
   ###########################
-  # need to contentable
+  # need to contentify
   ###########################
   s.add_dependency "sorcery"
   s.add_dependency "materialize-sass"

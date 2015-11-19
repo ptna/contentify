@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    contentable (0.0.1)
+    contentify (0.0.1)
       carrierwave
       cocoon
       coffee-rails (~> 4.1.0)
@@ -256,7 +256,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   better_errors
-  contentable!
+  contentify!
   factory_girl_rails
   i18n-tasks
   pry
