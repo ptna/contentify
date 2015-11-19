@@ -16,7 +16,9 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"]
-
+  ###########################
+  # Rails
+  ###########################
   s.add_dependency "rails", "~> 4.2.5"
   s.add_dependency "sass-rails", "~> 5.0"
   s.add_dependency "uglifier", ">= 1.3.0"
@@ -27,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jbuilder", "~> 2.0"
   s.add_dependency "mysql2"
   ###########################
-  # need to contentify
+  # Need to contentify
   ###########################
   s.add_dependency "sorcery"
   s.add_dependency "materialize-sass"
