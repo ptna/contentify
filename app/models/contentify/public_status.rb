@@ -8,7 +8,7 @@ module Contentify
 
     enum_accessor :type
 
-    has_many :articles
+    has_many :contents
     has_many :categories
 
     class << self
