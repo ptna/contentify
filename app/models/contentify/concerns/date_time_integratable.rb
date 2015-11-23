@@ -1,5 +1,5 @@
 module Contentify
-  module Concern
+  module Concerns
     module DateTimeIntegratable
       extend ActiveSupport::Concern
 

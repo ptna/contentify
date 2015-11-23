@@ -1,14 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Contentify</title>
-  <%= stylesheet_link_tag    "contentify/application", media: "all" %>
-  <%= javascript_include_tag "contentify/application" %>
+  <meta charset="UTF-8">
+  <%= stylesheet_link_tag    'contentify/application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'contentify/application', 'data-turbolinks-track' => true %>
+  <%= yield :head %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
 
-<%= yield %>
+    <nav>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a class="brand-logo">Contentify</a>
+          <a href="#!" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul class="right">
+            <li>
+              <!-- TODO ログインメッセージ OR ログアウト -->
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
+    <!-- TODO サイドメニュー -->
+
+  </header>
+
+  <main>
+    <div class="row center-align pad-top-20">
+      <% if flash[:notice] %>
+      <div class="chip teal white-text"><%= flash[:notice] %><i class="material-icons">close</i></div>
+      <% end %>
+      <% if flash[:alert] %>
+      <div class="chip red darken-1 white-text"><%= flash[:alert] %></div>
+      <% end %>
+    </div>
+
+    <%= yield %>
+  </main>
+
+  <footer class="page-footer no-margin-top">
+    <div class="footer-copyright">
+      <div class="container">
+      © <%= Time.now.year %> <!-- TODO 団体名 -->
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
+    </div>
+  </footer>
+
+  <%= yield :js %>
 </body>
 </html>

@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Contentify::VERSION
   s.authors     = ["igrs_ptna"]
   s.email       = ["igarashi@piano.or.jp"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Contentify."
-  s.description = "TODO: Description of Contentify."
+  s.homepage    = ""
+  s.summary     = "Summary of Contentify."
+  s.description = "Description of Contentify."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

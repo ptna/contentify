@@ -1,0 +1,46 @@
+<%- content_for :head do-%>
+<title>管理画面 | <%= @current_business.business_stable.name %> | <%= @category.name %> | 編集</title>
+<%- end -%>
+<div class="row">
+  <div class="col s12 m10 offset-m1 l10 offset-l1">
+    <div class="card">
+      <%- if @category.instance_of?(ArticleCategory) -%>
+      <%= form_for(@category, url: admin_business_article_category_path, method: :patch) do |f| %>
+        <div class="card-content">
+          <span class="card-title black-text">
+            <%= @current_business.business_stable.name %>&nbsp;<%= @category.name %>&nbsp;編集
+          </span>
+          <%= render "registration", f: f %>
+        </div>
+        <div class="card-action center-align">
+          <%= f.button '更新する', class: 'waves-effect waves-light btn white-text wine-red', data: { confirm: '更新してもよろしいですか?' } %>
+        </div>
+      <% end %>
+      <%- elsif @category.instance_of?(FixedCategory) -%>
+      <%= form_for(@category, url: admin_business_fixed_category_path, method: :patch) do |f| %>
+        <div class="card-content">
+          <span class="card-title black-text">
+            <%= @current_business.business_stable.name %>&nbsp;<%= @category.name %>&nbsp;編集
+          </span>
+          <%= render "registration", f: f %>
+        </div>
+        <div class="card-action center-align">
+          <%= f.button '更新する', class: 'waves-effect waves-light btn white-text wine-red', data: { confirm: '更新してもよろしいですか?' } %>
+        </div>
+      <% end %>
+      <%- elsif @category.instance_of?(ServiceCategory) -%>
+      <%= form_for(@category, url: admin_business_service_category_path, method: :patch) do |f| %>
+        <div class="card-content">
+          <span class="card-title black-text">
+            <%= @current_business.business_stable.name %>&nbsp;<%= @category.name %>&nbsp;編集
+          </span>
+          <%= render "registration", f: f %>
+        </div>
+        <div class="card-action center-align">
+          <%= f.button '更新する', class: 'waves-effect waves-light btn white-text wine-red', data: { confirm: '更新してもよろしいですか?' } %>
+        </div>
+      <% end %>
+      <%- end -%>
+    </div>
+  </div>
+</div>

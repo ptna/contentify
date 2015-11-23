@@ -1,0 +1,56 @@
+<!-- TODO ツリー構造を表示したメニューを作成する -->
+
+<%- content_for :head do-%>
+<title>管理画面 | カテゴリ 一覧</title>
+<%- end -%>
+
+<div class="row">
+  <div class="col s12 m10 offset-m1 l10 offset-l1">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title black-text">カテゴリ&nbsp;一覧</span>
+        <div class="center-align">
+        <%= paginate @categories %>
+        </div>
+        <table class="bordered responsive-table">
+          <thead>
+            <tr>
+              <th data-field="priority">並び順</th>
+              <th data-field="name_jp">日本語名</th>
+              <th data-field="name_en">英語名</th>
+              <th data-field="direct_url">ダイレクトURL</th>
+              <th data-field="is_visible">メニュー表示</th>
+              <th data-field="public_status_id" class="center-align">公開状態</th>
+              <th data-field="ctrl" class="center-align">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%- @categories.each do |category| -%>
+            <tr>
+              <td><%= category.priority %></td>
+              <td><%= category.name_jp %></td>
+              <td><%= category.name_en %></td>
+              <td><%= category.direct_url %></td>
+              <td><%= category.is_visible ? '表示' : '非表示' %></td>
+              <td class="center-align<%= category.public_status.bg_color %>">
+                <%= category.public_status.name %>
+              </td>
+              <td class="center-align">
+                <!-- TODO ボタン配置 -->
+                <a href="#!" class="waves-effect waves-light chip white-text wine-red mgn-top-5">編集</a>
+                <a href="#!" class="waves-effect waves-light chip black-text mgn-top-5">削除</a>
+              </td>
+            </tr>
+            <%- end -%>
+          </tbody>
+        </table>
+        <div class="center-align">
+          <%= paginate @categories %>
+        </div>
+      </div>
+      <div class="card-action right-align">
+        <a href="#!" class="waves-effect waves-light btn white-text wine-red">新規作成</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@ module Contentify
     has_many :categories_contents
     has_many :contents, through: :categories_contents
 
-    belongs_to_active_hash :public_status
+    belongs_to_active_hash :public_status, class_name: 'Contentify::PublicStatus'
 
     accepts_nested_attributes_for :categories_contents, allow_destroy: true
   end
