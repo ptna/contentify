@@ -112,7 +112,7 @@ module Contentify
             if model.save
               redirect_to(
                 self.send(self.class.success_redirect_path),
-                notice: model.send(self.class.notice_attribute) << "を作成しました。")
+                notice: model.send(self.class.notice_attribute) << "を更新しました。")
             else
               render :edit
             end

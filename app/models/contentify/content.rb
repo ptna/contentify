@@ -4,8 +4,6 @@ module Contentify
 
     include Contentify::Concerns::DateTimeIntegratable
 
-    establish_connection Contentify.config.data_source
-
     has_many :categories_contents
     has_many :categories, through: :categories_contents
 
@@ -14,6 +12,8 @@ module Contentify
     accepts_nested_attributes_for :categories_contents, allow_destroy: true
 
     integrate_datetime_fields :released_at, :closed_at
+
+    mount_uploader :summary_image, FileUploader
 
     # validates
     validates :title,

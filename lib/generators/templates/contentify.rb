@@ -1,4 +1,8 @@
 Contentify.configure do |config|
-  # set data source if you want use another data source to contentify
-  # config.data_source = :default
+  # set organization name
+  # this value show footer
+  # config.org_name = 'Contentify'
+
+  # set cms title max 18 charactors
+  # config.cms_title = 'Contentify'
 end if defined?(Contentify)

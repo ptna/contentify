@@ -2,11 +2,12 @@ class CreateContentifySchemas < ActiveRecord::Migration
   def change
     create_table :contentify_categories do |t|
       t.integer :parent_id,          null: true
-      t.integer :priority,           null: false
+      t.string  :priority,           null: false, default: '1'
       t.integer :public_status_id,   null: false, default: 2
-      t.string  :name_jp,            null: false, limit: 50
-      t.string  :name_en,            null: false, limit: 50
+      t.string  :name,               null: false, limit: 50
+      t.string  :slug,               null: false, limit: 50
       t.string  :direct_url,         null: true,  limit: 500
+      t.string  :image,              null: true,  limit: 500
       t.boolean :is_visible,         null: false, default: true
 
       t.timestamps null: false
@@ -52,6 +53,7 @@ class CreateContentifySchemas < ActiveRecord::Migration
       t.timestamps null: false
     end
 
+
     create_table :contentify_materials do |t|
       t.string  :title,           null: false,  limit: 100
       t.string  :source,          null: false,  limit: 255
@@ -61,5 +63,21 @@ class CreateContentifySchemas < ActiveRecord::Migration
 
     add_index :contentify_materials, :title
     add_index :contentify_materials, :source
+
+
+    create_table :contentify_category_hierarchies, id: false do |t|
+      t.integer :ancestor_id,   null: false
+      t.integer :descendant_id, null: false
+      t.integer :generations,   null: false
+    end
+
+    add_index :contentify_category_hierarchies,
+              [:ancestor_id, :descendant_id, :generations],
+              unique: true,
+              name: "contentify_category_anc_desc_idx"
+
+    add_index :contentify_category_hierarchies,
+              [:descendant_id],
+              name: "contentify_category_desc_idx"
   end
 end

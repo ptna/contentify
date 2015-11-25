@@ -1,0 +1,85 @@
+<!-- 表示名JP -->
+<div class="row">
+  <div class="input-field col s12">
+    <%= materialized_form_field(f, :text_field, :name, { class: 'validate' }) %>
+    <%= f.label :name %>
+    <%= display_error(f.object, :name) %>
+  </div>
+</div>
+
+<!-- 表示名EN -->
+<div class="row">
+  <div class="input-field col s12">
+    <%= materialized_form_field(f, :text_field, :slug, { class: 'validate' }) %>
+    <%= f.label :slug %>
+    <%= display_error(f.object, :slug) %>
+  </div>
+</div>
+
+<!-- 表示順 -->
+<div class="row">
+  <div class="input-field col s12">
+    <%= materialized_form_field(f, :number_field, :priority, { class: "validate", min: 1 }) %>
+    <%= f.label :priority %>
+    <%= display_error(f.object, :priority) %>
+  </div>
+</div>
+
+<!-- 親カテゴリ -->
+<div class="row">
+  <div class="input-field col s12">
+    <%= materialized_form_field(f, :select, :parent_id,
+        {
+          class: "browser-default",
+          choices: Contentify::Category.display_tree.reject{ |n| n == f.object }.map { |c| [c.display_name, c.id ] },
+          include_blank: true
+        })
+    %>
+    <%= f.label :parent_id, class: 'active' %>
+  </div>
+</div>
+
+<!-- URL -->
+<div class="row">
+  <div class="input-field col s12">
+    <%= materialized_form_field(f, :text_field, :direct_url, { class: 'validate' }) %>
+    <%= f.label :direct_url %>
+    <%= display_error(f.object, :direct_url) %>
+  </div>
+</div>
+
+<!-- 画像 -->
+<div class="row">
+  <div class="file-field input-field col s12">
+    <div class="btn">
+      <span>ファイル</span>
+      <%= materialized_form_field(f, :file_field, :image) %>
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text" value="<%= f.object.image.try(:file).try(:filename) || '' %>">
+    </div>
+    <%= f.label :image, '', class: 'active' %>
+    <%= display_error(f.object, :top_image) %>
+  </div>
+</div>
+
+<!-- メニュー表示するか -->
+<div class="row">
+  <div class="input-field col s12">
+    <%= materialized_form_field(f, :check_box, :is_visible) %>
+    <%= f.label :is_visible, 'メニューに表示する' %>
+    <%= display_error(f.object, :is_visible) %>
+  </div>
+</div>
+
+<!-- 公開/非公開 -->
+<div class="row">
+  <div class="input-field col s6 center-align">
+    <%- Contentify::PublicStatus.all.each do |status|-%>
+    <p>
+      <%= f.radio_button :public_status_id, status.id, checked: f.object.public_status == status, class: 'with-gap' %>
+      <%= f.label :public_status_id, status.name, value: status.id %>
+    </p>
+    <%- end -%>
+  </div>
+</div>
