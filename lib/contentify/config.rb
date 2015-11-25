@@ -11,8 +11,8 @@ module Contentify
       config.cms_title   = 'Contentify'
     end
 
-    def cms_title_limit_18_charactors
-      cms_title[0, 18]
+    def cms_title_with_limit
+      cms_title[0, 12]
     end
   end
 end

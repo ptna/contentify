@@ -3,6 +3,6 @@ Contentify.configure do |config|
   # this value show footer
   # config.org_name = 'Contentify'
 
-  # set cms title max 18 charactors
+  # set cms title max 12 charactors
   # config.cms_title = 'Contentify'
 end if defined?(Contentify)

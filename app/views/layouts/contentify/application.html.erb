@@ -15,14 +15,12 @@
     <nav>
       <div class="container">
         <div class="nav-wrapper">
-          <a><%= Contentify.config.cms_title_limit_18_charactors %></a>
+          <a><%= Contentify.config.cms_title_with_limit %></a>
           <a href="#!" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only">
             <i class="material-icons">menu</i>
           </a>
           <ul class="right">
-            <li>
-              <!-- TODO ログインメッセージ OR ログアウト -->
-            </li>
+            <li><%= link_to 'ログアウト', logout_path, method: :delete %></li></li>
           </ul>
         </div>
       </div>
@@ -48,7 +46,6 @@
   <footer class="page-footer no-margin-top">
     <div class="footer-copyright">
       <div class="container center-align">©&nbsp;<%= Time.now.year %>&nbsp;<%= Contentify.config.org_name %>
-      <!--<a class="grey-text text-lighten-4 right" href="#!">More Links</a>-->
       </div>
     </div>
   </footer>

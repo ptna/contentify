@@ -48,7 +48,9 @@ module Contentify
         included do
           def index
             self.instance_variable_set(
-              "@#{models_name.downcase}", model_name.constantize.all.try(:page, 1))
+              "@#{models_name.downcase}",
+              model_name.constantize.all
+            )
           end
         end
       end
@@ -81,6 +83,8 @@ module Contentify
                 # TODO use given message.
                 notice: model.send(self.class.notice_attribute) << "を作成しました。")
             else
+              self.instance_variable_set(
+                "@#{models_name.singularize}", model_name.constantize.new)
               render :new
             end
           end
@@ -114,6 +118,7 @@ module Contentify
                 self.send(self.class.success_redirect_path),
                 notice: model.send(self.class.notice_attribute) << "を更新しました。")
             else
+              self.instance_variable_set("@#{models_name.singularize}", model)
               render :edit
             end
           end

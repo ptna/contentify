@@ -2,6 +2,14 @@ ja:
   login:
     success: ログインしました。
     failed: ログインに失敗しました。
+  logout:
+    success: ログアウトしました。
+    failed: ログアウトに失敗しました。
+
+  models: &models
+    contentify/user: ユーザ
+    contentify/category: カテゴリ
+    contentify/content: コンテンツ
   attributes: &attributes
     contentify/category:
       name: 名称
@@ -62,11 +70,15 @@ ja:
       extension_white_list_error: ! '%{attribute}は%{allowed_types}形式のみ登録可能です。'
 
   activemodel:
+    models:
+      <<: *models
     attributes:
       <<: *attributes
     errors:
       <<: *errors
   activerecord:
+    models:
+      <<: *models
     attributes:
       <<: *attributes
     errors:

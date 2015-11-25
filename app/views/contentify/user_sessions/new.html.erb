@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <%= stylesheet_link_tag    'contentify/application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'contentify/application', 'data-turbolinks-track' => true %>
+  <title><%= Contentify.config.cms_title_with_limit %> | ログイン</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <header class="pad-0">
+    <nav>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a class="brand-logo"><%= Contentify.config.cms_title_with_limit %></a>
+          <a href="#!" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only">
+            <i class="material-icons">menu</i>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pad-0">
+
+    <div class="row center-align pad-top-20">
+      <% if flash[:notice] %>
+      <div class="chip teal white-text"><%= flash[:notice] %><i class="material-icons">close</i></div>
+      <% end %>
+      <% if flash[:alert] %>
+      <div class="chip red darken-1 white-text"><%= flash[:alert] %></div>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m6 offset-m3 l4 offset-l4">
+        <div class="card">
+          <%= form_tag user_sessions_path, method: :post do %>
+            <div class="card-content">
+              <div class="row">
+                <span class="card-title black-text">ログイン</span>
+                <div class="input-field col s12">
+                <label for="email">メールアドレス</label>
+                  <input type="text" class="validate" name="email" >
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12 validate">
+                  <label for="password">パスワード</label>
+                  <input type="password" class="validate" name="password" >
+                  </div>
+              </div>
+            </div>
+            <div class="card-action center-align">
+              <%= button_tag 'ログインする', class: 'waves-effect waves-light btn white-text wine-red' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="page-footer no-margin-top">
+    <div class="footer-copyright">
+      <div class="container">
+      ©&nbsp;<%= Time.now.year %>&nbsp;<%= Contentify.config.org_name %>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

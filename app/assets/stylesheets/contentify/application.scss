@@ -119,3 +119,11 @@ main {
   min-height: 3rem;
   line-height: 3rem;
 }
+
+.user-information {
+  position: absolute;
+  overflow: hidden;
+  left: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
