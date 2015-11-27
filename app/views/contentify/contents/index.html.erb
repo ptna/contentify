@@ -1,0 +1,59 @@
+<%- content_for :head do-%>
+<title>管理画面&nbsp;|&nbsp;記事&nbsp;|&nbsp;一覧</title>
+<%- end -%>
+
+<div class="row">
+  <div class="col s12 m10 offset-m1 l10 offset-l1">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title black-text">記事&nbsp;一覧</span>
+
+        <div class="center-align">
+          <%= paginate @contents %>
+        </div>
+        <table class="bordered responsive-table">
+          <thead>
+            <tr>
+              <th data-field="title">タイトル</th>
+              <th data-field="summary_image" class="center-align">概要画像</th>
+              <th data-field="public_status_id" class="center-align">公開状態</th>
+              <th data-field="released_at">公開日時</th>
+              <th data-field="ctrl" class="center-align">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%- @contents.each do |content| -%>
+            <tr>
+              <td><%= content.title %></td>
+              <td class="center-align">
+                <%- if content.summary_image.present? -%>
+                <img src="<%= content.summary_image %>"
+                     height="100px"
+                     class="img-responsive tooltipped"
+                     data-position="top"
+                     data-delay="250"
+                     data-tooltip="<%= content.summary_image %>">
+                <%- end -%>
+              </td>
+              <td class="center-align<%= content.public_status.bg_color %>">
+                <%= content.public_status.name %>
+              </td>
+              <td><%= content.released_at.to_s(:display) %></td>
+              <td class="center-align">
+                <%= link_to '編集', edit_content_path(content), class: 'waves-effect waves-light chip white-text wine-red mgn-top-5' %>
+                <%= link_to '削除', content_path(content), method: :delete, class: 'waves-effect waves-light chip black-text mgn-top-5', data: {confirm: '本当に削除しますか？'} %>
+              </td>
+            </tr>
+            <%- end -%>
+          </tbody>
+        </table>
+        <div class="center-align">
+          <%= paginate @contents %>
+        </div>
+      </div>
+      <div class="card-action right-align">
+        <%= link_to '新規作成', new_content_path, class: 'waves-effect waves-light btn white-text wine-red' %>
+      </div>
+    </div>
+  </div>
+</div>

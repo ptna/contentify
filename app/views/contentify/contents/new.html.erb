@@ -1,0 +1,18 @@
+<%- content_for :head do-%>
+<title>管理画面 | 記事 | 新規作成</title>
+<%- end -%>
+<div class="row">
+  <div class="col s12 m10 offset-m1 l10 offset-l1">
+    <div class="card">
+      <%= form_for(@content, url: contents_path, method: :post) do |f| %>
+      <div class="card-content">
+        <span class="card-title black-text">記事&nbsp;新規作成</span>
+        <%= render 'registration', f: f %>
+      </div>
+      <div class="card-action center-align">
+        <%= f.button '作成する', class: 'waves-effect waves-light btn white-text wine-red', data: { confirm: '作成してもよろしいですか?' } %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

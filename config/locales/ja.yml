@@ -19,12 +19,21 @@ ja:
       direct_url: リンク先URL
       image: 画像
     contentify/content:
-      name_jp: 日本語名称
-      name_en: 英語名称
-      parent_id: 親カテゴリ
+      title: タイトル
+      summary: 概要
+      summary_image: 概要画像
+      summary_image_caption: 概要画像キャプション
       priority: 並び順
-      direct_url: リンク先URL
-      image: 画像
+      released_at_date: 公開開始日
+      released_at_hour: 公開開始日 時
+      released_at_minute: 公開開始日 分
+      closed_at_date: 公開終了日
+      closed_at_hour: 公開終了日 時
+      closed_at_minute: 公開終了日 分
+      body: 本文
+      author_name: 著者名
+      is_display_author: 著者名を表示する
+
   errors: &errors
     messages:
       accepted: ! '%{attribute}に同意してください。'

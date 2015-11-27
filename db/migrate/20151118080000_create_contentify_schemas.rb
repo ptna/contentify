@@ -22,9 +22,9 @@ class CreateContentifySchemas < ActiveRecord::Migration
       t.string   :summary,               null: true,  limit: 500
       t.string   :summary_image,         null: true,  limit: 500
       t.string   :summary_image_caption, null: true,  limit: 100
-      t.string   :auther_name,           null: true,  limit: 50
-      t.text     :body,                  null: true
-      t.boolean  :display_author,        null: false, default: true
+      t.string   :author_name,           null: true,  limit: 50
+      t.text     :body,                  null: false
+      t.boolean  :is_display_author,     null: false, default: false
       t.datetime :released_at,           null: false
       t.datetime :closed_at,             null: false, default: '9999-12-31 23:59:59'
 
@@ -35,12 +35,12 @@ class CreateContentifySchemas < ActiveRecord::Migration
 
 
     create_table :contentify_categories_contents do |t|
-      t.integer  :contentify_category_id, null: false
-      t.integer  :contentify_content_id,  null: false
+      t.integer  :category_id, null: false
+      t.integer  :content_id,  null: false
     end
 
-    add_foreign_key :contentify_categories_contents, :contentify_categories
-    add_foreign_key :contentify_categories_contents, :contentify_contents
+    add_foreign_key :contentify_categories_contents, :contentify_categories, column: :category_id
+    add_foreign_key :contentify_categories_contents, :contentify_contents,   column: :content_id
 
 
     create_table :contentify_users do |t|

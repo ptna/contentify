@@ -34,10 +34,21 @@
   <li class="">
     <div class="row valign-wrapper mgn-bottom-0">
       <div class="col s9">
-        <a href="#!" class="waves-effect pad-0">記事</a>
+        <%= link_to '記事', contents_path, class: 'waves-effect pad-0' %>
       </div>
       <div class="col s3">
         <i class="material-icons valign">create</i>
+      </div>
+    </div>
+  </li>
+
+  <li class="">
+    <div class="row valign-wrapper mgn-bottom-0">
+      <div class="col s9">
+        <%= link_to 'ファイル', materials_path, class: 'waves-effect pad-0' %>
+      </div>
+      <div class="col s3">
+        <i class="material-icons valign">file_upload</i>
       </div>
     </div>
   </li>

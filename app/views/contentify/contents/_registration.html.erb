@@ -1,0 +1,130 @@
+<ul class="collapsible collapsible-accordion" data-collapsible="accordion">
+  <li>
+    <div class="collapsible-header"><i class="material-icons">local_offer</i>カテゴリ</div>
+    <div class="collapsible-body" style="display: none;">
+      <ul class="collection">
+        <%= f.collection_check_boxes(:category_ids, Contentify::Category.display_tree, :id, :display_name) do |b| %>
+          <li class="collection-item">
+            <%= b.check_box %><%= b.label %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </li>
+</ul>
+
+<div class="row">
+  <div class="input-field col s12">
+    <i class="material-icons prefix tooltipped" data-position="left" data-delay="50" data-tooltip="必須">info</i>
+    <%= materialized_form_field(f, :text_field, :title, { class: 'validate' }) %>
+    <%= f.label :title %>
+    <%= display_error(f.object, :title) %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col s12">
+    <%= materialized_form_field(f, :text_area, :summary, { class: "materialize-textarea", maxlength: 500 }) %>
+    <%= f.label :summary %>
+    <%= display_error(f.object, :summary) %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="file-field input-field col s12 m6 l6">
+    <div class="btn">
+      <span>ファイル</span>
+      <%= materialized_form_field(f, :file_field, :summary_image) %>
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text" value="<%= f.object.summary_image.try(:file).try(:filename) || '' %>">
+    </div>
+    <%= f.label :summary_image, '', class: 'active' %>
+    <%= display_error(f.object, :summary_image) %>
+  </div>
+  <div class="input-field col s12 m6 l6">
+    <%= materialized_form_field(f, :text_field, :summary_image_caption) %>
+    <%= f.label :summary_image_caption %>
+    <%= display_error(f.object, :summary_image_caption) %>
+  </div>
+</div>
+
+<!-- 表示順 -->
+<div class="row">
+  <div class="input-field col s12">
+    <%= materialized_form_field(f, :number_field, :priority, { class: "validate", min: 1 }) %>
+    <%= f.label :priority %>
+    <%= display_error(f.object, :priority) %>
+  </div>
+</div>
+
+<div class="row mgn-bottom-0">
+  <div class="col s12 m6 l6">
+    <div class="input-field col s12 m6 l6">
+      <i class="material-icons prefix tooltipped" data-position="left" data-delay="50" data-tooltip="必須">info</i>
+      <%= materialized_form_field(f, :text_field, :released_at_date, { class: "datepicker" }) %>
+      <%= f.label :released_at_date %>
+    </div>
+    <div class="input-field col s6 m3 l3">
+      <%= materialized_form_field(f, :select, :released_at_hour, { class: "browser-default", choices: ("00".."23").to_a }) %>
+      <%= f.label :released_at_hour, class: 'active' %>
+    </div>
+    <div class="input-field col s6 m3 l3">
+      <%= materialized_form_field(f, :select, :released_at_minute, { class: "browser-default", choices: ("00".."59").to_a }) %>
+      <%= f.label :released_at_minute, class: 'active' %>
+    </div>
+  </div>
+  <div class="col s12 m6 l6">
+    <div class="input-field col s12 m6 l6">
+      <%= materialized_form_field(f, :text_field, :closed_at_date, { class: "datepicker" }) %>
+      <%= f.label :closed_at_date %>
+    </div>
+    <div class="input-field col s6 m3 l3">
+      <%= materialized_form_field(f, :select, :closed_at_hour, { class: "browser-default", choices: ("00".."23").to_a }) %>
+      <%= f.label :closed_at_hour, class: 'active' %>
+    </div>
+    <div class="input-field col s6 m3 l3">
+      <%= materialized_form_field(f, :select, :closed_at_minute, { class: "browser-default", choices: ("00".."59").to_a }) %>
+      <%= f.label :closed_at_minute, class: 'active' %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12 m12 l12">
+    <%= materialized_form_field(f, :date_field, :released_at, { class: '', disabled: true, style: 'height: 0;' }) %>
+    <%= display_error(f.object, :released_at) %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col s12">
+    <i class="material-icons prefix tooltipped" data-position="left" data-delay="50" data-tooltip="必須">info</i>
+    <%= materialized_form_field(f, :text_area, :body, { class: "materialize-textarea" }) %>
+    <%= f.label :body %>
+    <%= display_error(f.object, :body) %>
+  </div>
+</div>
+
+<!-- author -->
+<div class="row">
+  <div class="input-field col s12 m6 l6">
+    <%= materialized_form_field(f, :check_box, :is_display_author) %>
+    <%= f.label :is_display_author %>
+    <%= display_error(f.object, :is_display_author) %>
+  </div>
+  <div class="input-field col s12 m6 l6">
+    <%= materialized_form_field(f, :text_field, :author_name, { class: 'validate' }) %>
+    <%= f.label :author_name %>
+    <%= display_error(f.object, :author_name) %>
+  </div>
+</div>
+
+<!-- public status -->
+<div class="row">
+  <div class="input-field col s6 offset-s3 center-align">
+    <%- Contentify::PublicStatus.all.each do |status|-%>
+    <%= f.radio_button :public_status_id, status.id, checked: f.object.public_status == status, class: 'with-gap' %>
+    <%= f.label :public_status_id, status.name, value: status.id %>
+    <%- end -%>
+  </div>
+</div>
