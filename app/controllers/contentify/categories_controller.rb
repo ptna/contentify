@@ -8,7 +8,7 @@ module Contentify
     include Concerns::BasicController::Update
     include Concerns::BasicController::Destroy
 
-    registrable_params_as    :registerable_params
+    registrable_params_as    :registrable_params
     success_redirect_path_as :categories_path
     fault_redirect_path_as   :categories_path
     notice_attribute_as      :name
@@ -17,7 +17,7 @@ module Contentify
       @categories = Contentify::Category.display_tree
     end
 
-    def registerable_params
+    def registrable_params
       params.require(:category).permit(
         :parent_id,
         :priority,

@@ -8,7 +8,7 @@ module Contentify
     include Concerns::BasicController::Update
     include Concerns::BasicController::Destroy
 
-    registrable_params_as    :registerable_params
+    registrable_params_as    :registrable_params
     success_redirect_path_as :users_path
     fault_redirect_path_as   :users_path
     notice_attribute_as      :name
@@ -17,7 +17,7 @@ module Contentify
       @users = User.try(:page, params[:page])
     end
 
-    def registerable_params
+    def registrable_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
   end

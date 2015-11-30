@@ -10,7 +10,7 @@ module Contentify
 
     before_action :setup_editable_content!, only: [:edit, :update, :destroy]
 
-    registrable_params_as    :registerable_params
+    registrable_params_as    :registrable_params
     success_redirect_path_as :contents_path
     fault_redirect_path_as   :contents_path
     notice_attribute_as      :title
@@ -24,7 +24,7 @@ module Contentify
     end
 
     private
-    def registerable_params
+    def registrable_params
       params.require(:content).permit(
         :public_status_id,
         :priority,
