@@ -19,11 +19,10 @@ module Contentify
     validates :title,
               presence: true,
               length: { maximum: 255 }
-
-    validates :summary,
-              length: { maximum: 500 }
-
-    validates :released_at,
-              presence: true
+    validates :summary, length: { maximum: 500 }
+    validates :summary, length: { maximum: 100 }
+    validates :author_name, length: { maximum: 50 }
+    validates :body, presence: true
+    validates :released_at, presence: true
   end
 end

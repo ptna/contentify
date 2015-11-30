@@ -15,7 +15,18 @@ module Contentify
 
     mount_uploader :image, FileUploader
 
-    validates :priority, presence: true
+    validates :priority,
+              presence: true
+    validates :name,
+              presence: true,
+              length: { maximum: 50 }
+    validates :slug,
+              presence: true,
+              length: { maximum: 50 }
+    validates :direct_url
+              length: { maximum: 500 }
+
+
 
     def self.display_tree
       self.hash_tree_to_array(self.hash_tree)
