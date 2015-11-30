@@ -1,0 +1,23 @@
+<!-- 表示名JP -->
+<div class="row">
+  <div class="input-field col s12">
+    <%= materialized_form_field(f, :text_field, :title, { class: 'validate' }) %>
+    <%= f.label :title %>
+    <%= display_error(f.object, :title) %>
+  </div>
+</div>
+
+<!-- ファイル -->
+<div class="row">
+  <div class="file-field input-field col s12">
+    <div class="btn">
+      <span>ファイル</span>
+      <%= materialized_form_field(f, :file_field, :source) %>
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text" value="<%= f.object.source.try(:file).try(:filename) || '' %>">
+    </div>
+    <%= f.label :source, '', class: 'active' %>
+    <%= display_error(f.object, :source) %>
+  </div>
+</div>

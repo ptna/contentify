@@ -1,0 +1,52 @@
+<%- content_for :head do-%>
+<title>管理画面&nbsp;|&nbsp;ファイル&nbsp;|&nbsp;一覧</title>
+<%- end -%>
+
+<div class="row">
+  <div class="col s12 m10 offset-m1 l10 offset-l1">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title black-text">ファイル&nbsp;一覧</span>
+        <div class="center-align">
+        </div>
+        <table class="bordered">
+          <thead>
+            <tr>
+              <th data-field="title">タイトル</th>
+              <th data-field="source">ファイルパス</th>
+              <th data-field="type">種類</th>
+              <th data-field="control">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%- @materials.each do |material| -%>
+            <tr>
+              <td><%= material.title %></td>
+              <td><%= material.source.to_s %></td>
+              <td>
+                <% if material.source.image? %>
+                <img src="<%= material.source %>"
+                     height="100px"
+                     class="img-responsive tooltipped"
+                     data-position="top"
+                     data-delay="250"
+                     data-tooltip="<%= material.source %>">
+                <% else %>
+                <i class="material-iconsq">description</i>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to '編集', edit_material_path(material), class: 'waves-effect waves-light chip white-text wine-red mgn-top-5' %>
+                <%= link_to '削除', material_path(material), method: 'delete', class: 'waves-effect waves-light chip black-text mgn-top-5', data: { confirm: '削除してもよろしいですか？' } %>
+              </td>
+            </tr>
+            <%- end -%>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-action right-align">
+        <%= link_to '新規作成', new_material_path, class: 'waves-effect waves-light btn white-text wine-red' %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -59,7 +59,7 @@
       <input class="file-path validate" type="text" value="<%= f.object.image.try(:file).try(:filename) || '' %>">
     </div>
     <%= f.label :image, '', class: 'active' %>
-    <%= display_error(f.object, :top_image) %>
+    <%= display_error(f.object, :image) %>
   </div>
 </div>
 

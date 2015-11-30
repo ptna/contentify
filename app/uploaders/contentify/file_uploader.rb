@@ -30,6 +30,15 @@ module Contentify
     #   # do something
     # end
 
+    def image_extension_white_list
+      %w(jpg jpeg gif svg png)
+    end
+
+    def doc_extension_white_list
+      %w(pdf)
+    end
+
+
     # Create different versions of your uploaded files:
     # version :thumb do
     #   process :resize_to_fit => [50, 50]
@@ -38,7 +47,7 @@ module Contentify
     # Add a white list of extensions which are allowed to be uploaded.
     # For images you might use something like this:
     def extension_white_list
-      %w(jpg jpeg gif png pdf)
+      image_extension_white_list + doc_extension_white_list
     end
 
     # Override the filename of the uploaded files:
@@ -47,5 +56,13 @@ module Contentify
     #   "something.jpg" if original_filename
     # end
 
+
+    def image?
+      image_extension_white_list.include?(file.extension)
+    end
+
+    def doc?
+      doc_extension_white_list.include?(file.extension)
+    end
   end
 end
